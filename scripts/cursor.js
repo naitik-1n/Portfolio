@@ -154,3 +154,4 @@ class LatverianCursor {
 document.addEventListener('DOMContentLoaded', () => {
   new LatverianCursor();
 });
+

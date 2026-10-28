@@ -410,3 +410,4 @@ class CircuitRunesBackground {
 document.addEventListener('DOMContentLoaded', () => {
   new CircuitRunesBackground('circuit-runes-canvas');
 });
+

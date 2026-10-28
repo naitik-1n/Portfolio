@@ -68,7 +68,7 @@ class LatverianAudio {
       filter.connect(gain);
       gain.connect(this.ctx.destination);
       noise.start();
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
@@ -510,3 +510,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
