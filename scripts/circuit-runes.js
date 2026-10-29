@@ -158,7 +158,7 @@ class CircuitRunesBackground {
     this.circuits.forEach((c, idx) => {
       ctx.beginPath();
       ctx.lineWidth = c.width;
-      ctx.strokeStyle = 'rgba(135, 134, 129, 0.12)'; // Brushed Titanium faint trace
+      ctx.strokeStyle = 'rgba(42, 107, 86, 0.16)'; // Brushed Titanium faint trace
 
       const pts = c.points;
       ctx.moveTo(pts[0].x, pts[0].y);
@@ -171,7 +171,7 @@ class CircuitRunesBackground {
       const last = pts[pts.length - 1];
       ctx.beginPath();
       ctx.arc(last.x, last.y, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(135, 134, 129, 0.25)';
+      ctx.fillStyle = 'rgba(61, 140, 114, 0.3)';
       ctx.fill();
 
       // Flowing data pulse along the circuit (Mystic Green)
@@ -189,8 +189,8 @@ class CircuitRunesBackground {
         // Glowing pulse head
         ctx.beginPath();
         ctx.arc(px, py, 2.2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(57, 255, 20, 0.6)';
-        ctx.shadowColor = '#39FF14';
+        ctx.fillStyle = 'rgba(76, 175, 136, 0.55)';
+        ctx.shadowColor = '#4CAF88';
         ctx.shadowBlur = 8;
         ctx.fill();
         ctx.shadowBlur = 0; // reset
@@ -200,7 +200,7 @@ class CircuitRunesBackground {
     // Bridge lines connecting circuits to right sigils
     const bridgeStartX = this.width * 0.52;
     const bridgeEndX = this.width * 0.68;
-    ctx.strokeStyle = 'rgba(27, 77, 62, 0.2)'; // Latverian Emerald faint bridge
+    ctx.strokeStyle = 'rgba(27, 77, 62, 0.18)'; // Latverian Emerald faint bridge
     ctx.lineWidth = 1;
     for (let i = 0; i < 6; i++) {
       const y = this.height * (0.25 + i * 0.1);
@@ -228,7 +228,7 @@ class CircuitRunesBackground {
       // Outer boundary circle
       ctx.beginPath();
       ctx.arc(0, 0, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(27, 77, 62, 0.28)'; // Emerald
+      ctx.strokeStyle = 'rgba(27, 77, 62, 0.25)'; // Emerald
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
@@ -241,14 +241,14 @@ class CircuitRunesBackground {
         ctx.beginPath();
         ctx.moveTo(Math.cos(a) * r1, Math.sin(a) * r1);
         ctx.lineTo(Math.cos(a) * r2, Math.sin(a) * r2);
-        ctx.strokeStyle = i % 4 === 0 ? 'rgba(57, 255, 20, 0.3)' : 'rgba(135, 134, 129, 0.2)';
+        ctx.strokeStyle = i % 4 === 0 ? 'rgba(76, 175, 136, 0.25)' : 'rgba(135, 134, 129, 0.2)';
         ctx.stroke();
       }
     } else if (type === 'runic-inscriptions') {
       // Runic glyph geometric shapes
       ctx.beginPath();
       ctx.arc(0, 0, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(135, 134, 129, 0.18)';
+      ctx.strokeStyle = 'rgba(42, 107, 86, 0.15)';
       ctx.setLineDash([8, 12]);
       ctx.stroke();
       ctx.setLineDash([]);
@@ -268,7 +268,7 @@ class CircuitRunesBackground {
         ctx.lineTo(0, 6);
         ctx.lineTo(6, -6);
         ctx.closePath();
-        ctx.strokeStyle = 'rgba(57, 255, 20, 0.25)';
+        ctx.strokeStyle = 'rgba(76, 175, 136, 0.22)';
         ctx.stroke();
         ctx.restore();
       }
@@ -289,7 +289,7 @@ class CircuitRunesBackground {
         else ctx.lineTo(starPts[nextIdx].x, starPts[nextIdx].y);
       }
       ctx.closePath();
-      ctx.strokeStyle = 'rgba(27, 77, 62, 0.35)'; // Latverian emerald
+      ctx.strokeStyle = 'rgba(27, 77, 62, 0.32)'; // Latverian emerald
       ctx.lineWidth = 1.2;
       ctx.stroke();
 
@@ -297,7 +297,7 @@ class CircuitRunesBackground {
       starPts.forEach(pt => {
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(57, 255, 20, 0.4)';
+        ctx.fillStyle = 'rgba(76, 175, 136, 0.45)';
         ctx.shadowColor = '#39FF14';
         ctx.shadowBlur = 6;
         ctx.fill();
@@ -321,13 +321,13 @@ class CircuitRunesBackground {
         ctx.lineTo(Math.cos(a3) * rInner, Math.sin(a3) * rInner);
       }
       ctx.closePath();
-      ctx.strokeStyle = 'rgba(135, 134, 129, 0.3)'; // Titanium
+      ctx.strokeStyle = 'rgba(42, 107, 86, 0.28)'; // Titanium
       ctx.stroke();
 
       // Center ring
       ctx.beginPath();
       ctx.arc(0, 0, radius * 0.35, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(57, 255, 20, 0.3)';
+      ctx.strokeStyle = 'rgba(76, 175, 136, 0.25)';
       ctx.stroke();
     } else if (type === 'satellite') {
       ctx.beginPath();
@@ -345,7 +345,7 @@ class CircuitRunesBackground {
         else ctx.lineTo(px, py);
       }
       ctx.closePath();
-      ctx.strokeStyle = 'rgba(135, 134, 129, 0.18)';
+      ctx.strokeStyle = 'rgba(42, 107, 86, 0.15)';
       ctx.stroke();
     }
 
@@ -370,7 +370,7 @@ class CircuitRunesBackground {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(57, 255, 20, ${alpha * 0.4})`;
+      ctx.fillStyle = `rgba(76, 175, 136, ${alpha * 0.35})`;
       ctx.fill();
     });
   }
@@ -395,8 +395,8 @@ class CircuitRunesBackground {
         this.mouse.x, this.mouse.y, 0,
         this.mouse.x, this.mouse.y, 350
       );
-      grad.addColorStop(0, 'rgba(27, 77, 62, 0.07)');
-      grad.addColorStop(0.5, 'rgba(57, 255, 20, 0.02)');
+      grad.addColorStop(0, 'rgba(27, 77, 62, 0.05)');
+      grad.addColorStop(0.5, 'rgba(76, 175, 136, 0.03)');
       grad.addColorStop(1, 'rgba(10, 10, 10, 0)');
       this.ctx.fillStyle = grad;
       this.ctx.fillRect(0, 0, this.width, this.height);

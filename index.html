@@ -1,778 +1,654 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NAITIK // THE LATVERIAN ARCHIVES [DOCTOR DOOM PROTOCOL]</title>
-  <meta name="description" content="Personal portfolio of Naitik. Systems Architect, Computational Engineer, and F1 Aerodynamicist. Latverian Dark Mode.">
-  <meta name="theme-color" content="#0a0a0a">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="NAITIK // LATVERIAN ARCHIVES">
-  <meta property="og:description" content="Systems Architect, Computational Engineer, and F1 Aerodynamicist. Where magic meets machinery.">
+  <title>Naitik Kumar Pradhan — Portfolio</title>
+  <meta name="description"
+    content="Personal portfolio of Naitik Kumar Pradhan. Software Engineer, learner, and hobbyist.">
+  <meta name="theme-color" content="#0d1a15">
+  <meta property="og:title" content="Naitik Kumar Pradhan — Portfolio">
+  <meta property="og:description" content="Software Engineer · Learner · Hobbyist">
   <meta property="og:type" content="website">
-
-  <!-- Stylesheet -->
+  <!-- Font preconnects for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><polygon points=%2250,5 95,90 5,90%22 fill=%22none%22 stroke=%22%2339FF14%22 stroke-width=%228%22/><circle cx=%2250%22 cy=%2255%22 r=%2222%22 fill=%22none%22 stroke=%22%231B4D3E%22 stroke-width=%228%22/></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%231B4D3E' stroke-width='8'/><circle cx='50' cy='50' r='14' fill='%234CAF88'/></svg>">
 </head>
+
 <body>
 
-  <!-- ========================================================================
-       PRELOADER: GEAR TURNING INSIDE MAGICAL PENTAGRAM/SIGIL
-       ======================================================================== -->
+  <!-- PRELOADER -->
   <div id="preloader" role="status" aria-live="polite">
     <div class="preloader-core">
       <svg class="preloader-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Arcane Concentric Sigil Outer Rings (Counter-Clockwise) -->
         <g class="preloader-sigil">
-          <circle cx="100" cy="100" r="92" stroke="#1B4D3E" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.6"/>
-          <circle cx="100" cy="100" r="82" stroke="#878681" stroke-width="1" opacity="0.4"/>
-          <!-- Arcane Pentagram Star -->
-          <polygon points="100,22 174,136 49,66 151,66 26,136" stroke="#1B4D3E" stroke-width="2" fill="none" opacity="0.75"/>
-          <!-- Glowing Vertex Nodes -->
-          <circle cx="100" cy="22" r="3.5" fill="#39FF14" class="preloader-pulse-node"/>
-          <circle cx="174" cy="136" r="3.5" fill="#39FF14" class="preloader-pulse-node"/>
-          <circle cx="49" cy="66" r="3.5" fill="#39FF14" class="preloader-pulse-node"/>
-          <circle cx="151" cy="66" r="3.5" fill="#39FF14" class="preloader-pulse-node"/>
-          <circle cx="26" cy="136" r="3.5" fill="#39FF14" class="preloader-pulse-node"/>
+          <circle cx="100" cy="100" r="90" stroke="#1B4D3E" stroke-width="1.5" stroke-dasharray="8 5" opacity="0.6" />
+          <circle cx="100" cy="100" r="78" stroke="#2A6B56" stroke-width="1" opacity="0.4" />
+          <polygon points="100,25 170,135 30,135" stroke="#1B4D3E" stroke-width="1.5" fill="none" opacity="0.7" />
+          <circle cx="100" cy="25" r="4" fill="#4CAF88" class="preloader-pulse-node" />
+          <circle cx="170" cy="135" r="4" fill="#4CAF88" class="preloader-pulse-node" />
+          <circle cx="30" cy="135" r="4" fill="#4CAF88" class="preloader-pulse-node" />
         </g>
-
-        <!-- Precision Mechanical Gear (Clockwise) -->
         <g class="preloader-gear">
-          <!-- Gear Body -->
-          <circle cx="100" cy="100" r="42" fill="#0e1210" stroke="#878681" stroke-width="2"/>
-          <!-- 12 Gear Teeth -->
-          <path d="M96 52 h8 v10 h-8 z" fill="#878681"/>
-          <path d="M96 138 h8 v10 h-8 z" fill="#878681"/>
-          <path d="M52 96 h10 v8 h-10 z" fill="#878681"/>
-          <path d="M138 96 h10 v8 h-10 z" fill="#878681"/>
-
-          <path d="M66 66 l6 -6 l7 7 l-6 6 z" fill="#878681"/>
-          <path d="M128 128 l6 -6 l7 7 l-6 6 z" fill="#878681"/>
-          <path d="M134 66 l6 6 l-7 7 l-6 -6 z" fill="#878681"/>
-          <path d="M66 134 l6 6 l-7 7 l-6 -6 z" fill="#878681"/>
-
-          <!-- Gear Hub Center -->
-          <circle cx="100" cy="100" r="16" fill="#1B4D3E" stroke="#39FF14" stroke-width="1.5"/>
-          <circle cx="100" cy="100" r="6" fill="#39FF14"/>
+          <circle cx="100" cy="100" r="40" fill="#122219" stroke="#2A6B56" stroke-width="2" />
+          <path d="M97 56 h6 v10 h-6 z" fill="#3D8C72" />
+          <path d="M97 134 h6 v10 h-6 z" fill="#3D8C72" />
+          <path d="M56 97 h10 v6 h-10 z" fill="#3D8C72" />
+          <path d="M134 97 h10 v6 h-10 z" fill="#3D8C72" />
+          <path d="M68 68 l5 -5 l6 6 l-5 5 z" fill="#3D8C72" />
+          <path d="M126 126 l5 -5 l6 6 l-5 5 z" fill="#3D8C72" />
+          <path d="M132 68 l5 5 l-6 6 l-5 -5 z" fill="#3D8C72" />
+          <path d="M68 132 l5 5 l-6 6 l-5 -5 z" fill="#3D8C72" />
+          <circle cx="100" cy="100" r="14" fill="#1B4D3E" stroke="#4CAF88" stroke-width="1.5" />
+          <circle cx="100" cy="100" r="5" fill="#4CAF88" />
         </g>
       </svg>
     </div>
-
     <div class="preloader-telemetry">
-      <div class="preloader-title">LATVERIAN PROTOCOL</div>
-      <div class="preloader-progress" id="preloader-progress">00%</div>
-      <div class="preloader-status" id="preloader-status">[ INITIALIZING ARCHIVES... ]</div>
+      <div class="preloader-title">Naitik Kumar Pradhan</div>
+      <div class="preloader-progress" id="preloader-progress">0%</div>
+      <div class="preloader-status" id="preloader-status">Loading portfolio...</div>
     </div>
   </div>
 
-  <!-- Background Dynamic Canvas: Circuit-Runes (Left Circuits -> Right Sigils) -->
+  <!-- BACKGROUND CANVAS -->
   <canvas id="circuit-runes-canvas"></canvas>
 
-  <!-- ========================================================================
-       TOP HUD NAVIGATION BAR
-       ======================================================================== -->
+  <!-- NAVIGATION -->
   <header class="top-hud">
     <div class="hud-inner">
       <a href="#" class="hud-brand">
         <svg class="brand-sigil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
-          <circle cx="12" cy="12" r="3.5" fill="#39FF14"/>
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="3.5" fill="currentColor" />
         </svg>
-        <span class="brand-name">NAITIK</span>
-        <span class="brand-protocol">[ ARCHITECT // PROTOCOL 01 ]</span>
+        <span class="brand-name">Naitik</span>
       </a>
 
-      <nav class="hud-nav" aria-label="Main Navigation">
-        <a href="#origin" class="nav-link"><span class="accent-slash">//</span>01. ORIGIN <span class="bracket">[</span>THE DOSSIER<span class="bracket">]</span></a>
-        <a href="#archives" class="nav-link"><span class="accent-slash">//</span>02. ARCHIVES <span class="bracket">[</span>BLUEPRINTS<span class="bracket">]</span></a>
-        <a href="#arsenal" class="nav-link"><span class="accent-slash">//</span>03. ARSENAL <span class="bracket">[</span>TECH SPEC<span class="bracket">]</span></a>
-        <a href="#uplink" class="nav-link"><span class="accent-slash">//</span>04. UPLINK <span class="bracket">[</span>DIPLOMATIC<span class="bracket">]</span></a>
+      <nav class="hud-nav" aria-label="Navigation">
+        <a href="#origin" class="nav-link">About</a>
+        <a href="#archives" class="nav-link">Achievements</a>
+        <a href="#hobbies" class="nav-link">Hobbies</a>
+        <a href="#uplink" class="nav-link">Contact</a>
       </nav>
 
       <div class="hud-actions">
-        <div class="telemetry-indicator" id="telemetry-clock">LATVERIA // 00:00:00.00 UTC</div>
-        <button class="btn-hud-sfx" id="audio-toggle" title="Toggle Synthesizer Feedback">[SFX: MUTED]</button>
+        <div class="telemetry-indicator" id="telemetry-clock">IST 00:00:00</div>
+        <button class="btn-theme-toggle" id="theme-toggle" title="Toggle light / dark mode" aria-label="Toggle theme">
+          ☀️
+        </button>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- ========================================================================
-         HERO SECTION: THE MONARCH OF CODE & MACHINERY
-         ======================================================================== -->
+
+    <!-- ====================================================================
+         HERO
+         ==================================================================== -->
     <section class="hero-section" id="hero">
       <div class="container">
         <div class="hero-layout">
+
+          <!-- Left: Text -->
           <div class="hero-text-pane">
             <div class="hero-status-pill">
               <span class="status-pulsar"></span>
-              <span>LATVERIAN DARK MODE // SECURITY: SUPREME</span>
+              <span>Open to opportunities</span>
             </div>
 
-            <h1 class="hero-title">
-              NAITIK
-              <span class="title-accent">ARCHITECT OF MACHINERY</span>
-            </h1>
+            <h1 class="hero-title">Naitik</h1>
 
-            <div class="hero-subtitle">
-              SYSTEMS ARCHITECT <span class="accent-slash">//</span> COMPUTATIONAL SCIENTIST <span class="accent-slash">//</span> F1 AERODYNAMICIST
-            </div>
+            <div class="hero-subtitle">Software Engineer</div>
 
             <div class="hero-proclamation">
-              "Mastering the fundamental treatises of the past, engineering with the unyielding aerodynamic precision of Formula 1, and forging high-throughput systems where <em>intellect and authority</em> reign absolute."
+              A curious learner who enjoys trying new things.
+              <em>Always looking for opportunities</em> to grow
+              and contribute.
             </div>
 
             <div class="hero-cta-group">
-              <a href="#origin" class="btn-latverian btn-primary">
-                <span>[ ACCESS DOSSIER ]</span>
-                <span class="accent-bracket">&rarr;</span>
-              </a>
-              <a href="#archives" class="btn-latverian">
-                <span>[ THE ARCHIVES ]</span>
-              </a>
-              <a href="#uplink" class="btn-latverian">
-                <span>[ ESTABLISH UPLINK ]</span>
-              </a>
+              <a href="#origin" class="btn-latverian btn-primary">About Me &rarr;</a>
+              <a href="#archives" class="btn-latverian">Achievements</a>
+              <a href="#uplink" class="btn-latverian">Contact</a>
             </div>
 
-            <div class="hero-telemetry-strip">
-              <div class="telemetry-item">
-                <span class="telemetry-label">CLOCK JITTER</span>
-                <span class="telemetry-val">&lt; 0.08 &mu;s</span>
+            <div class="hero-stats-row">
+              <div class="stat-item">
+                <span class="stat-label">Based in</span>
+                <span class="stat-val">India</span>
               </div>
-              <div class="telemetry-item">
-                <span class="telemetry-label">TELEMETRY BANDWIDTH</span>
-                <span class="telemetry-val">120k pts/sec</span>
+              <div class="stat-item">
+                <span class="stat-label">Focus</span>
+                <span class="stat-val">Software &amp; Web</span>
               </div>
-              <div class="telemetry-item">
-                <span class="telemetry-label">CFD DOWNFORCE EQUATION</span>
-                <span class="telemetry-val">L = C<sub>L</sub> &middot; &frac12;&rho;v&sup2;A</span>
-              </div>
-              <div class="telemetry-item">
-                <span class="telemetry-label">SOVEREIGN CORE</span>
-                <span class="telemetry-val data-highlight">LATVERIA ONLINE</span>
+              <div class="stat-item">
+                <span class="stat-label">Status</span>
+                <span class="stat-val accent">Available</span>
               </div>
             </div>
           </div>
 
-          <!-- Hero Right: Armor Plating HUD Unit -->
-          <div class="hero-armor-panel">
-            <div class="armor-header">
-              <span>[ DOOM SPECIFICATION: MK-IV ]</span>
-              <span>TELEMETRY: OPTIMAL</span>
+          <!-- Right: ID Card -->
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <span class="label">Identity</span>
+              <span>Naitik Kumar Pradhan</span>
             </div>
 
-            <div class="sigil-terminal-display">
-              <!-- Geometric Sigil & Crosshair SVG -->
+            <div class="card-sigil-wrap">
               <svg class="sigil-artwork" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="90" stroke="#878681" stroke-width="1.5" stroke-dasharray="10 5" opacity="0.5"/>
-                <circle cx="100" cy="100" r="72" stroke="#1B4D3E" stroke-width="2"/>
-                <polygon points="100,30 160,140 40,140" stroke="#39FF14" stroke-width="1.5" opacity="0.7"/>
-                <polygon points="100,170 160,60 40,60" stroke="#878681" stroke-width="1.5" opacity="0.4"/>
-                <circle cx="100" cy="100" r="28" fill="#1B4D3E" stroke="#39FF14" stroke-width="2"/>
-                <!-- Reticle Crosshair Marks -->
-                <line x1="100" y1="10" x2="100" y2="40" stroke="#39FF14" stroke-width="2"/>
-                <line x1="100" y1="160" x2="100" y2="190" stroke="#39FF14" stroke-width="2"/>
-                <line x1="10" y1="100" x2="40" y2="100" stroke="#39FF14" stroke-width="2"/>
-                <line x1="160" y1="100" x2="190" y2="100" stroke="#39FF14" stroke-width="2"/>
-                <circle cx="100" cy="100" r="5" fill="#39FF14"/>
+                <circle cx="100" cy="100" r="88" stroke="#2A6B56" stroke-width="1.5" stroke-dasharray="10 6"
+                  opacity="0.5" />
+                <circle cx="100" cy="100" r="70" stroke="#1B4D3E" stroke-width="2" />
+                <polygon points="100,32 162,138 38,138" stroke="#4CAF88" stroke-width="1.5" opacity="0.7" />
+                <polygon points="100,168 162,62 38,62" stroke="#2A6B56" stroke-width="1.5" opacity="0.35" />
+                <circle cx="100" cy="100" r="26" fill="#1B4D3E" stroke="#4CAF88" stroke-width="2" />
+                <line x1="100" y1="12" x2="100" y2="38" stroke="#4CAF88" stroke-width="1.5" />
+                <line x1="100" y1="162" x2="100" y2="188" stroke="#4CAF88" stroke-width="1.5" />
+                <line x1="12" y1="100" x2="38" y2="100" stroke="#4CAF88" stroke-width="1.5" />
+                <line x1="162" y1="100" x2="188" y2="100" stroke="#4CAF88" stroke-width="1.5" />
+                <circle cx="100" cy="100" r="5" fill="#4CAF88" />
               </svg>
             </div>
 
-            <div class="terminal-specs-readout">
-              <div class="spec-box">
-                <div class="spec-box-label">ARMOR ALLOY</div>
-                <div class="spec-box-val">Brushed Titanium #878681</div>
+            <div class="hero-id-grid">
+              <div class="id-field">
+                <span class="id-field-label">Full Name</span>
+                <span class="id-field-val">Naitik Kumar Pradhan</span>
               </div>
-              <div class="spec-box">
-                <div class="spec-box-label">ARCANE CLOAK</div>
-                <div class="spec-box-val">Latverian Emerald #1B4D3E</div>
+              <div class="id-field">
+                <span class="id-field-label">Date of Birth</span>
+                <span class="id-field-val">28 September 2006</span>
               </div>
-              <div class="spec-box">
-                <div class="spec-box-label">POWER BUS</div>
-                <div class="spec-box-val data-highlight">Mystic Neon #39FF14</div>
+              <div class="id-field">
+                <span class="id-field-label">Email</span>
+                <span class="id-field-val accent">naitikkumarpradhan<br>@gmail.com</span>
               </div>
-              <div class="spec-box">
-                <div class="spec-box-label">SUBSTRATE</div>
-                <div class="spec-box-val">Matte Obsidian #0a0a0a</div>
+              <div class="id-field">
+                <span class="id-field-label">Phone</span>
+                <span class="id-field-val">8249463071</span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ========================================================================
-         SECTION 01: THE DOSSIER (ORIGIN / ABOUT ME)
-         ======================================================================== -->
+    <!-- ====================================================================
+         SECTION 01 — ABOUT ME
+         ==================================================================== -->
     <section class="section-wrapper" id="origin">
       <div class="container">
         <div class="section-header">
-          <span class="section-identifier"><span class="accent-slash">//</span> SECTION 01 // ORIGIN</span>
-          <h2 class="section-title">THE DOSSIER</h2>
+          <div class="section-label">
+            <span class="section-label-dot"></span>
+            01 · About
+          </div>
+          <h2 class="section-title">All About Me</h2>
           <p class="section-subtitle">
-            An intellectual synthesis of scientific historical foundations and ruthless Formula 1 aerodynamic discipline.
+            A brief look at who I am, what I enjoy, and how I approach learning.
           </p>
           <div class="section-divider"></div>
         </div>
 
         <div class="dossier-grid">
-          <!-- Card 1: Studying the Masters of the Past -->
-          <div class="glass-panel dossier-card chamfer-box">
-            <div>
-              <div class="dossier-badge">[ PARADIGM: FIRST PRINCIPLES ]</div>
-              <h3 class="dossier-heading">STUDYING THE MASTERS OF THE PAST</h3>
-              <p>
-                True computational authority is not derived from following transient industry fads. It is built upon the immovable bedrock forged by the intellectual giants of history: <strong>Newton’s</strong> calculus of continuous motion, <strong>Maxwell’s</strong> electromagnetic unifications, <strong>Turing’s</strong> mechanical decidability, and <strong>von Neumann’s</strong> stored-program architectures.
-              </p>
-              <p>
-                By dissecting how past polymaths synthesized physics and formal logic to resolve unsolvable enigmas, I approach modern software engineering not as an assembly of disjointed frameworks, but as a cohesive science—rigorous, provable, and immutable.
-              </p>
-            </div>
 
+          <!-- Card 1 -->
+          <div class="dossier-card">
+            <div class="dossier-badge">Learning &amp; Growth</div>
+            <h3 class="dossier-heading">Learning from the Best</h3>
+            <p>
+              I believe in understanding things from the ground up. Whether it is
+              <strong>computer science fundamentals</strong>, science history, or a new
+              programming language, I prefer to understand the "why" before the "how".
+            </p>
+            <p>
+              I enjoy reading about <strong>how great thinkers solved problems</strong>
+              in the past. It helps me think more clearly and creatively about the
+              challenges I face today.
+            </p>
             <div class="dossier-metrics">
               <div class="metric-entry">
                 <span class="metric-num">100%</span>
-                <span class="metric-desc">FIRST-PRINCIPLES RIGOR</span>
+                <span class="metric-desc">Curiosity driven</span>
               </div>
               <div class="metric-entry">
-                <span class="metric-num">FORMAL</span>
-                <span class="metric-desc">MATHEMATICAL VERIFICATION</span>
+                <span class="metric-num">Always</span>
+                <span class="metric-desc">Learning something new</span>
               </div>
             </div>
           </div>
 
-          <!-- Card 2: Obsessing Over Peak Aerodynamic Performance -->
-          <div class="glass-panel dossier-card chamfer-box">
-            <div>
-              <div class="dossier-badge">[ VELOCITY: ZERO COMPROMISE ]</div>
-              <h3 class="dossier-heading">OBSESSING OVER PEAK AERODYNAMICS</h3>
-              <p>
-                Formula 1 is the purest arena of ruthless human engineering. Every vortex shed by a front wing cascade, every low-pressure gradient engineered beneath a ground-effect venturi floor, and every sub-millisecond telemetry packet streaming from a carbon-fiber chassis represents the pursuit of absolute optimization.
-              </p>
-              <p>
-                I apply this exact aerodynamic obsession directly to software systems. Code must exhibit zero unnecessary drag, zero garbage collection stutter, and pristine computational laminar flow. When latency is measured in microseconds and throughput in gigabits, performance is not an afterthought—it is destiny.
-              </p>
-            </div>
-
+          <!-- Card 2 -->
+          <div class="dossier-card">
+            <div class="dossier-badge">Interests &amp; Passions</div>
+            <h3 class="dossier-heading">A Hobbyist at Heart</h3>
+            <p>
+              Outside of coding, I am deeply interested in <strong>Formula 1</strong>
+              — the blend of engineering precision and split-second decision making
+              fascinates me. I love how every small detail can change the outcome of a race.
+            </p>
+            <p>
+              I also enjoy <strong>exploring science history</strong> and understanding
+              how the world's greatest discoveries were made. These interests shape how
+              I approach problems — methodically and with genuine curiosity.
+            </p>
             <div class="dossier-metrics">
               <div class="metric-entry">
-                <span class="metric-num">&lt; 1.2ms</span>
-                <span class="metric-desc">CRITICAL PATH LATENCY</span>
+                <span class="metric-num">F1</span>
+                <span class="metric-desc">Motorsport enthusiast</span>
               </div>
               <div class="metric-entry">
-                <span class="metric-num">ZERO-COPY</span>
-                <span class="metric-desc">MEMORY PIPELINE HARNESS</span>
+                <span class="metric-num">Open</span>
+                <span class="metric-desc">To collaboration</span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ========================================================================
-         SECTION 02: THE ARCHIVES (PROJECTS & BLUEPRINTS)
-         ======================================================================== -->
+    <!-- ====================================================================
+         SECTION 02 — ACHIEVEMENTS (click to expand)
+         ==================================================================== -->
     <section class="section-wrapper" id="archives">
       <div class="container">
         <div class="section-header">
-          <span class="section-identifier"><span class="accent-slash">//</span> SECTION 02 // BLUEPRINTS</span>
-          <h2 class="section-title">THE ARCHIVES</h2>
+          <div class="section-label">
+            <span class="section-label-dot"></span>
+            02 · Achievements
+          </div>
+          <h2 class="section-title">What I Have Built</h2>
           <p class="section-subtitle">
-            Catalog of engineered systems, high-speed telemetry engines, and arcane computational frameworks.
+            A collection of projects and achievements. Click any card to learn more.
           </p>
           <div class="section-divider"></div>
         </div>
 
-        <!-- Filter Controls -->
+        <!-- Filter Bar -->
         <div class="project-filter-bar" role="tablist">
-          <button class="filter-btn active" data-filter="all">[ ALL ARCHIVES ]</button>
-          <button class="filter-btn" data-filter="aero">[ AERODYNAMICS & SIM ]</button>
-          <button class="filter-btn" data-filter="systems">[ SYSTEMS & ENGINES ]</button>
-          <button class="filter-btn" data-filter="ai-web">[ ARCANE WEB & AI ]</button>
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="web">Web &amp; Apps</button>
+          <button class="filter-btn" data-filter="systems">Systems</button>
+          <button class="filter-btn" data-filter="research">Research</button>
         </div>
 
         <div class="projects-grid">
-          <!-- Project 1: VORTEX-F1 -->
-          <div class="project-card" data-category="aero" data-project-id="vortex-f1">
+
+          <!-- Card 1 -->
+          <div class="project-card" data-category="web" data-expand-id="proj-1">
             <div class="project-card-content">
               <div class="project-top-row">
-                <span class="project-id-tag">ARCHIVE // 001</span>
-                <span class="project-category-tag">[ AERO & SIM ]</span>
+                <span style="font-size:0.72rem;color:var(--text-muted)">01</span>
+                <span class="project-category-tag">Web &amp; Apps</span>
               </div>
-              <h3 class="project-title">VORTEX-F1</h3>
+              <h3 class="project-title">Personal Portfolio</h3>
               <p class="project-desc">
-                High-throughput telemetry ingestion and real-time CFD streamline visualizer for single-seater aerodynamic analysis under ground-effect venturi loads.
+                This very website — designed and built from scratch with a custom
+                emerald minimal theme, dark/light mode, and smooth animations.
               </p>
-              <div class="project-specs-list">
-                <div class="spec-line"><span class="spec-k">THROUGHPUT:</span><span class="spec-v">120k pts/sec</span></div>
-                <div class="spec-line"><span class="spec-k">RENDER CORE:</span><span class="spec-v">WebGPU / GLSL</span></div>
-                <div class="spec-line"><span class="spec-k">PIPELINE:</span><span class="spec-v">Zero-Copy Ring</span></div>
-              </div>
               <div class="project-tags-cloud">
-                <span class="project-pill">C++20</span>
-                <span class="project-pill">WebGPU</span>
-                <span class="project-pill">FastAPI</span>
-                <span class="project-pill">CAN-Bus</span>
+                <span class="project-pill">HTML</span>
+                <span class="project-pill">CSS</span>
+                <span class="project-pill">JavaScript</span>
               </div>
-              <div class="project-footer-actions">
-                <button class="btn-blueprint open-blueprint-btn">[ BLUEPRINT SPECS ]</button>
+              <div class="project-expand-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                </svg>
+                Click to expand
               </div>
             </div>
           </div>
 
-          <!-- Project 2: LATVERIA-OS -->
-          <div class="project-card" data-category="systems" data-project-id="latveria-os">
+          <!-- Card 2 -->
+          <div class="project-card" data-category="systems" data-expand-id="proj-2">
             <div class="project-card-content">
               <div class="project-top-row">
-                <span class="project-id-tag">ARCHIVE // 002</span>
-                <span class="project-category-tag">[ SYSTEMS ]</span>
+                <span style="font-size:0.72rem;color:var(--text-muted)">02</span>
+                <span class="project-category-tag">Systems</span>
               </div>
-              <h3 class="project-title">LATVERIA-OS</h3>
+              <h3 class="project-title">F1 Lap Analyser</h3>
               <p class="project-desc">
-                Deterministic, bare-metal real-time microkernel runtime engineered with capability-based security and lock-free IPC channels without heap allocations.
+                A tool that analyses Formula 1 lap timing data to compare driver
+                performance across sectors and visualise race pace trends.
               </p>
-              <div class="project-specs-list">
-                <div class="spec-line"><span class="spec-k">SCHEDULING:</span><span class="spec-v">Hard Real-Time EDF</span></div>
-                <div class="spec-line"><span class="spec-k">FOOTPRINT:</span><span class="spec-v">64 KB Base Memory</span></div>
-                <div class="spec-line"><span class="spec-k">SWITCH DELTA:</span><span class="spec-v">42 nanoseconds</span></div>
-              </div>
-              <div class="project-tags-cloud">
-                <span class="project-pill">Rust</span>
-                <span class="project-pill">x86_64 Asm</span>
-                <span class="project-pill">Bare-Metal</span>
-                <span class="project-pill">TLA+</span>
-              </div>
-              <div class="project-footer-actions">
-                <button class="btn-blueprint open-blueprint-btn">[ BLUEPRINT SPECS ]</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3: ARCANUM-NEURAL -->
-          <div class="project-card" data-category="ai-web" data-project-id="arcanum-neural">
-            <div class="project-card-content">
-              <div class="project-top-row">
-                <span class="project-id-tag">ARCHIVE // 003</span>
-                <span class="project-category-tag">[ ARCANE AI ]</span>
-              </div>
-              <h3 class="project-title">ARCANUM-NEURAL</h3>
-              <p class="project-desc">
-                Neuro-symbolic reasoning engine that locks physical boundary conditions and mathematical invariant proofs into deep tensor representations.
-              </p>
-              <div class="project-specs-list">
-                <div class="spec-line"><span class="spec-k">INVARIANT CHECK:</span><span class="spec-v">Z3 SMT Theorem Prover</span></div>
-                <div class="spec-line"><span class="spec-k">CONVERGENCE:</span><span class="spec-v">Exact Symbolic Proof</span></div>
-                <div class="spec-line"><span class="spec-k">EFFICIENCY:</span><span class="spec-v">+42% Over Transformers</span></div>
-              </div>
-              <div class="project-tags-cloud">
-                <span class="project-pill">PyTorch</span>
-                <span class="project-pill">Z3 Prover</span>
-                <span class="project-pill">Rust Bindings</span>
-                <span class="project-pill">GraphBLAS</span>
-              </div>
-              <div class="project-footer-actions">
-                <button class="btn-blueprint open-blueprint-btn">[ BLUEPRINT SPECS ]</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 4: TITANIUM-TRACE -->
-          <div class="project-card" data-category="systems" data-project-id="titanium-trace">
-            <div class="project-card-content">
-              <div class="project-top-row">
-                <span class="project-id-tag">ARCHIVE // 004</span>
-                <span class="project-category-tag">[ SYSTEMS ]</span>
-              </div>
-              <h3 class="project-title">TITANIUM-TRACE</h3>
-              <p class="project-desc">
-                Ultra-low latency memory-mapped distributed ledger backed by Linux io_uring and kernel-bypass networking for sub-microsecond state replication.
-              </p>
-              <div class="project-specs-list">
-                <div class="spec-line"><span class="spec-k">THROUGHPUT:</span><span class="spec-v">450k trans/sec</span></div>
-                <div class="spec-line"><span class="spec-k">STORAGE I/O:</span><span class="spec-v">Linux io_uring Async</span></div>
-                <div class="spec-line"><span class="spec-k">P99.9 JITTER:</span><span class="spec-v">&lt; 18 &mu;s</span></div>
-              </div>
-              <div class="project-tags-cloud">
-                <span class="project-pill">Go 1.23</span>
-                <span class="project-pill">io_uring</span>
-                <span class="project-pill">eBPF</span>
-                <span class="project-pill">FlatBuffers</span>
-              </div>
-              <div class="project-footer-actions">
-                <button class="btn-blueprint open-blueprint-btn">[ BLUEPRINT SPECS ]</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 5: APEX-SIM -->
-          <div class="project-card" data-category="aero" data-project-id="apex-sim">
-            <div class="project-card-content">
-              <div class="project-top-row">
-                <span class="project-id-tag">ARCHIVE // 005</span>
-                <span class="project-category-tag">[ AERO & SIM ]</span>
-              </div>
-              <h3 class="project-title">APEX-SIM</h3>
-              <p class="project-desc">
-                Monte Carlo Formula 1 race strategy engine modeling tire rubber degradation curves, dirty air wake interference, and pit undercut deltas.
-              </p>
-              <div class="project-specs-list">
-                <div class="spec-line"><span class="spec-k">SIMULATIONS:</span><span class="spec-v">500k runs / sec</span></div>
-                <div class="spec-line"><span class="spec-k">ACCURACY:</span><span class="spec-v">99.4% Pit Delta Match</span></div>
-                <div class="spec-line"><span class="spec-k">VARIABLES:</span><span class="spec-v">38 Aero & Thermal Metrics</span></div>
-              </div>
               <div class="project-tags-cloud">
                 <span class="project-pill">Python</span>
-                <span class="project-pill">NumPy</span>
-                <span class="project-pill">Next.js</span>
-                <span class="project-pill">WebSockets</span>
+                <span class="project-pill">Pandas</span>
+                <span class="project-pill">Matplotlib</span>
               </div>
-              <div class="project-footer-actions">
-                <button class="btn-blueprint open-blueprint-btn">[ BLUEPRINT SPECS ]</button>
+              <div class="project-expand-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                </svg>
+                Click to expand
               </div>
             </div>
           </div>
 
-          <!-- Project 6: CHRONOS-SIGIL -->
-          <div class="project-card" data-category="ai-web" data-project-id="chronos-sigil">
+          <!-- Card 3 -->
+          <div class="project-card" data-category="web" data-expand-id="proj-3">
             <div class="project-card-content">
               <div class="project-top-row">
-                <span class="project-id-tag">ARCHIVE // 006</span>
-                <span class="project-category-tag">[ ARCANE WEB ]</span>
+                <span style="font-size:0.72rem;color:var(--text-muted)">03</span>
+                <span class="project-category-tag">Web &amp; Apps</span>
               </div>
-              <h3 class="project-title">CHRONOS-SIGIL</h3>
+              <h3 class="project-title">Study Tracker App</h3>
               <p class="project-desc">
-                Experimental WebGL 2.0 compute experience synthesizing raymarched arcane fractal mathematics and dynamic procedural Web Audio frequencies.
+                A simple web application to track daily study hours, set goals,
+                and visualise weekly progress with a clean dashboard.
               </p>
-              <div class="project-specs-list">
-                <div class="spec-line"><span class="spec-k">RENDERER:</span><span class="spec-v">Raw GLSL Fragment</span></div>
-                <div class="spec-line"><span class="spec-k">FRAME TIMING:</span><span class="spec-v">Locked 120 FPS</span></div>
-                <div class="spec-line"><span class="spec-k">FOOTPRINT:</span><span class="spec-v">18 KB Zero-Dependency</span></div>
-              </div>
               <div class="project-tags-cloud">
-                <span class="project-pill">WebGL 2.0</span>
-                <span class="project-pill">GLSL</span>
-                <span class="project-pill">Web Audio</span>
-                <span class="project-pill">TypeScript</span>
+                <span class="project-pill">React</span>
+                <span class="project-pill">CSS</span>
+                <span class="project-pill">LocalStorage</span>
               </div>
-              <div class="project-footer-actions">
-                <button class="btn-blueprint open-blueprint-btn">[ BLUEPRINT SPECS ]</button>
+              <div class="project-expand-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                </svg>
+                Click to expand
               </div>
             </div>
           </div>
+
+          <!-- Card 4 -->
+          <div class="project-card" data-category="research" data-expand-id="proj-4">
+            <div class="project-card-content">
+              <div class="project-top-row">
+                <span style="font-size:0.72rem;color:var(--text-muted)">04</span>
+                <span class="project-category-tag">Research</span>
+              </div>
+              <h3 class="project-title">Science History Blog</h3>
+              <p class="project-desc">
+                A personal blog documenting stories of great scientists — how they
+                thought, how they failed, and what made their discoveries groundbreaking.
+              </p>
+              <div class="project-tags-cloud">
+                <span class="project-pill">Writing</span>
+                <span class="project-pill">Research</span>
+                <span class="project-pill">History of Science</span>
+              </div>
+              <div class="project-expand-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                </svg>
+                Click to expand
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="project-card" data-category="systems" data-expand-id="proj-5">
+            <div class="project-card-content">
+              <div class="project-top-row">
+                <span style="font-size:0.72rem;color:var(--text-muted)">05</span>
+                <span class="project-category-tag">Systems</span>
+              </div>
+              <h3 class="project-title">CLI Task Manager</h3>
+              <p class="project-desc">
+                A command-line task manager built in Python that lets you add,
+                complete, and list tasks directly in the terminal with priority tags.
+              </p>
+              <div class="project-tags-cloud">
+                <span class="project-pill">Python</span>
+                <span class="project-pill">CLI</span>
+                <span class="project-pill">JSON Storage</span>
+              </div>
+              <div class="project-expand-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                </svg>
+                Click to expand
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="project-card" data-category="web" data-expand-id="proj-6">
+            <div class="project-card-content">
+              <div class="project-top-row">
+                <span style="font-size:0.72rem;color:var(--text-muted)">06</span>
+                <span class="project-category-tag">Web &amp; Apps</span>
+              </div>
+              <h3 class="project-title">Weather Dashboard</h3>
+              <p class="project-desc">
+                A clean weather dashboard that fetches live weather data from an API
+                and displays it with a minimal, easy-to-read interface.
+              </p>
+              <div class="project-tags-cloud">
+                <span class="project-pill">JavaScript</span>
+                <span class="project-pill">REST API</span>
+                <span class="project-pill">CSS Grid</span>
+              </div>
+              <div class="project-expand-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                </svg>
+                Click to expand
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ========================================================================
-         SECTION 03: ARSENAL & ARCANA (SKILLS & TECHNICAL SPECIFICATIONS)
-         ======================================================================== -->
-    <section class="section-wrapper" id="arsenal">
+    <!-- ====================================================================
+         SECTION 03 — HOBBIES & OTHER TALENTS
+         ==================================================================== -->
+    <section class="section-wrapper" id="hobbies">
       <div class="container">
         <div class="section-header">
-          <span class="section-identifier"><span class="accent-slash">//</span> SECTION 03 // TECH SPEC</span>
-          <h2 class="section-title">ARSENAL & ARCANA</h2>
+          <div class="section-label">
+            <span class="section-label-dot"></span>
+            03 · Hobbies &amp; Talents
+          </div>
+          <h2 class="section-title">Beyond the Screen</h2>
           <p class="section-subtitle">
-            Inventory of low-level systems, mathematical engines, high-speed graphics, and sovereign engineering practices.
+            A few things I enjoy and am good at outside of coding.
           </p>
           <div class="section-divider"></div>
         </div>
 
-        <div class="arsenal-grid">
-          <!-- Column 1: Low-Level & Computational -->
-          <div class="glass-panel arsenal-column chamfer-box">
-            <h3 class="arsenal-category-title">
-              <span class="accent-slash">//</span> 01. LOW-LEVEL & COMPUTING
-            </h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Rust (Systems & Real-Time)</span>
-                  <span class="skill-val">[ 96% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 96%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">C++20 / Memory Optimizations</span>
-                  <span class="skill-val">[ 92% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 92%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">x86_64 Assembly & Micro-ops</span>
-                  <span class="skill-val">[ 84% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 84%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Linux Kernel Internals & io_uring</span>
-                  <span class="skill-val">[ 88% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 88%"></div></div>
-              </div>
+        <div class="hobbies-grid">
+
+          <div class="hobby-card">
+            <div class="hobby-icon">🏎️</div>
+            <div class="hobby-name">Formula 1</div>
+            <div class="hobby-desc">
+              Following F1 since I was young. I love the strategy, engineering, and the
+              fine margins that separate winning from losing. I analyse race data for fun.
             </div>
           </div>
 
-          <!-- Column 2: Aerodynamics & Graphics Shaders -->
-          <div class="glass-panel arsenal-column chamfer-box">
-            <h3 class="arsenal-category-title">
-              <span class="accent-slash">//</span> 02. AERODYNAMICS & SHADERS
-            </h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">CFD Modeling & Streamline Solvers</span>
-                  <span class="skill-val">[ 90% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 90%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">WebGPU & GLSL Compute Shaders</span>
-                  <span class="skill-val">[ 89% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 89%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">High-Frequency Telemetry Ingestion</span>
-                  <span class="skill-val">[ 95% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 95%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Monte Carlo Race Simulation</span>
-                  <span class="skill-val">[ 93% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 93%"></div></div>
-              </div>
+          <div class="hobby-card">
+            <div class="hobby-icon">📖</div>
+            <div class="hobby-name">Reading &amp; Science History</div>
+            <div class="hobby-desc">
+              I enjoy reading about how great discoveries were made — from Newton to
+              Turing. Understanding the human side of science keeps me inspired.
             </div>
           </div>
 
-          <!-- Column 3: Modern Arcane Web & Architectures -->
-          <div class="glass-panel arsenal-column chamfer-box">
-            <h3 class="arsenal-category-title">
-              <span class="accent-slash">//</span> 03. ARCANE RUNES & WEB
-            </h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">TypeScript / Modern ES Next</span>
-                  <span class="skill-val">[ 95% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 95%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">React / Next.js / Performance Web</span>
-                  <span class="skill-val">[ 91% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 91%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">HTML5 Canvas 2D & Interactive Math</span>
-                  <span class="skill-val">[ 94% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 94%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Web Audio API & Sound Synthesis</span>
-                  <span class="skill-val">[ 86% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 86%"></div></div>
-              </div>
+          <div class="hobby-card">
+            <div class="hobby-icon">🎵</div>
+            <div class="hobby-name">Music</div>
+            <div class="hobby-desc">
+              Music is a constant companion while I work or study. I enjoy a wide range
+              of genres and appreciate the structure and creativity behind good composition.
             </div>
           </div>
 
-          <!-- Column 4: Discipline & Verification -->
-          <div class="glass-panel arsenal-column chamfer-box">
-            <h3 class="arsenal-category-title">
-              <span class="accent-slash">//</span> 04. RIGOR & MASTERY
-            </h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">TLA+ Formal Specification Proofs</span>
-                  <span class="skill-val">[ 85% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 85%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Distributed Consensus (Raft/Paxos)</span>
-                  <span class="skill-val">[ 92% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 92%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Profiling (Perf, Valgrind, eBPF)</span>
-                  <span class="skill-val">[ 90% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 90%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Mathematical Optimization & Linear Algebra</span>
-                  <span class="skill-val">[ 94% ]</span>
-                </div>
-                <div class="skill-meter"><div class="skill-fill" style="width: 94%"></div></div>
-              </div>
+          <div class="hobby-card">
+            <div class="hobby-icon">♟️</div>
+            <div class="hobby-name">Chess</div>
+            <div class="hobby-desc">
+              Chess sharpens logical thinking and patience. I play casually online and
+              enjoy studying famous games to understand the thought process behind each move.
             </div>
           </div>
+
+          <div class="hobby-card">
+            <div class="hobby-icon">✍️</div>
+            <div class="hobby-name">Writing</div>
+            <div class="hobby-desc">
+              I write to organise my thoughts — whether it is a blog post about science,
+              notes on something I learnt, or just journaling to reflect on the day.
+            </div>
+          </div>
+
+          <div class="hobby-card">
+            <div class="hobby-icon">🔭</div>
+            <div class="hobby-name">Astronomy &amp; Physics</div>
+            <div class="hobby-desc">
+              The scale of the universe is endlessly fascinating. I enjoy watching
+              documentaries and reading about cosmology and the nature of reality.
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ========================================================================
-         SECTION 04: ESTABLISH UPLINK (DIPLOMATIC CHANNELS / CONTACT)
-         ======================================================================== -->
+    <!-- ====================================================================
+         SECTION 04 — CONTACT
+         ==================================================================== -->
     <section class="section-wrapper" id="uplink">
       <div class="container">
         <div class="section-header">
-          <span class="section-identifier"><span class="accent-slash">//</span> SECTION 04 // DIPLOMATIC CHANNELS</span>
-          <h2 class="section-title">ESTABLISH UPLINK</h2>
+          <div class="section-label">
+            <span class="section-label-dot"></span>
+            04 · Contact
+          </div>
+          <h2 class="section-title">Get in Touch</h2>
           <p class="section-subtitle">
-            Direct diplomatic conduit to Latverian Command. Transmit project inquiries, collaboration proposals, or architectural audits.
+            Feel free to reach out for projects, collaboration, or just a conversation.
           </p>
           <div class="section-divider"></div>
         </div>
 
         <div class="uplink-container">
-          <!-- Uplink Info & Coordinates -->
+
+          <!-- Left: Info -->
           <div class="uplink-info-pane">
             <div class="uplink-directive">
-              "Those who wish to converse with Latverian Command must speak with precision. Whether you seek to discuss sub-millisecond systems, high-downforce aerodynamic modeling, or novel computational architectures, transmit your signal."
-            </div>
-
-            <div class="uplink-cipher-status">
-              <div><strong>CIPHER STATUS:</strong> ACTIVE (4096-BIT LATVERIAN PROTOCOL)</div>
-              <div><strong>ROUTING:</strong> SECURE SATELLITE RELAY [LAT-ORBIT-44]</div>
-              <div><strong>DISPATCH POLICY:</strong> UNCOMPROMISING RESPONSE DISCIPLINE</div>
+              "I am always happy to connect with people who are curious, motivated,
+              and looking to build something meaningful."
             </div>
 
             <div class="diplomatic-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="diplomatic-link-item">
-                <span><span class="accent-slash">//</span> GITHUB [SOURCE ARCHIVES]</span>
-                <span class="data-highlight">&nearr;</span>
+              <a href="https://github.com/naitik-1n/" target="_blank" rel="noopener noreferrer"
+                class="diplomatic-link-item">
+                <span>GitHub — Source Code</span>
+                <span class="link-arrow">↗</span>
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="diplomatic-link-item">
-                <span><span class="accent-slash">//</span> LINKEDIN [PROFESSIONAL DOSSIER]</span>
-                <span class="data-highlight">&nearr;</span>
+                <span>LinkedIn — Professional Profile</span>
+                <span class="link-arrow">↗</span>
               </a>
               <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="diplomatic-link-item">
-                <span><span class="accent-slash">//</span> X / TWITTER [TRANSMISSION FEED]</span>
-                <span class="data-highlight">&nearr;</span>
+                <span>X / Twitter</span>
+                <span class="link-arrow">↗</span>
               </a>
-              <a href="mailto:naitik@latveria.dev" class="diplomatic-link-item">
-                <span><span class="accent-slash">//</span> DIRECT RELAY [EMAIL UPLINK]</span>
-                <span class="data-highlight">&rarr;</span>
+              <a href="mailto:naitikkumarpradhan@gmail.com" class="diplomatic-link-item">
+                <span>naitikkumarpradhan@gmail.com</span>
+                <span class="link-arrow">→</span>
               </a>
             </div>
           </div>
 
-          <!-- Uplink Form Terminal -->
-          <div class="glass-panel uplink-form-panel chamfer-box">
+          <!-- Right: Form -->
+          <div class="uplink-form-panel">
             <div class="form-header">
-              <span>[ ENCRYPTED TERMINAL CONSOLE ]</span>
-              <span class="data-highlight">[ READY FOR INPUT ]</span>
+              <span>Send a Message</span>
+              <span class="form-header-status">Ready</span>
             </div>
 
             <form id="uplink-form">
               <div class="form-group">
-                <label class="form-label" for="uplink-name">
-                  <span class="accent-slash">//</span> IDENTIFIER <span class="bracket">[</span>NAME / CODENAME<span class="bracket">]</span>
-                </label>
-                <input type="text" id="uplink-name" class="latverian-input" placeholder="e.g. Victor, Reed, Adrian..." required autocomplete="off">
+                <label class="form-label" for="uplink-name">Your Name</label>
+                <input type="text" id="uplink-name" class="latverian-input" placeholder="Your name" required
+                  autocomplete="off">
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="uplink-email">
-                  <span class="accent-slash">//</span> FREQUENCY <span class="bracket">[</span>SECURE COMMS / EMAIL<span class="bracket">]</span>
-                </label>
-                <input type="email" id="uplink-email" class="latverian-input" placeholder="e.g. operator@domain.com" required autocomplete="off">
+                <label class="form-label" for="uplink-email">Your Email</label>
+                <input type="email" id="uplink-email" class="latverian-input" placeholder="your@email.com" required
+                  autocomplete="off">
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="uplink-clearance">
-                  <span class="accent-slash">//</span> CLASSIFICATION <span class="bracket">[</span>OBJECTIVE<span class="bracket">]</span>
-                </label>
+                <label class="form-label" for="uplink-clearance">Subject</label>
                 <select id="uplink-clearance" class="latverian-input">
-                  <option value="PROJECT">PROJECT INGESTION & ARCHITECTURE</option>
-                  <option value="AERODYNAMICS">FORMULA 1 & TELEMETRY SIMULATION</option>
-                  <option value="SYSTEMS">LOW-LATENCY RUNTIME & KERNEL SYSTEMS</option>
-                  <option value="DIPLOMATIC">GENERAL DIPLOMATIC INQUIRY</option>
+                  <option value="PROJECT">Project / Collaboration</option>
+                  <option value="GENERAL">General Enquiry</option>
+                  <option value="OPPORTUNITY">Opportunity</option>
+                  <option value="OTHER">Other</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="uplink-message">
-                  <span class="accent-slash">//</span> TRANSMISSION PAYLOAD <span class="bracket">[</span>MESSAGE<span class="bracket">]</span>
-                </label>
-                <textarea id="uplink-message" class="latverian-input" rows="4" placeholder="Transmit specifications, technical parameters, or mission brief..." required></textarea>
+                <label class="form-label" for="uplink-message">Message</label>
+                <textarea id="uplink-message" class="latverian-input" rows="4" placeholder="Write your message here..."
+                  required></textarea>
               </div>
 
-              <button type="submit" id="uplink-submit-btn" class="btn-latverian btn-primary" style="width: 100%; justify-content: center;">
-                <span>[ DISPATCH TRANSMISSION VIA RELAY ]</span>
+              <button type="submit" id="uplink-submit-btn" class="btn-latverian btn-primary"
+                style="width:100%;justify-content:center;">
+                Send Message
               </button>
 
               <div id="uplink-status-log" class="uplink-terminal-log" aria-live="polite">
-                <div class="log-step">&gt; TERMINAL READY. AWAITING TRANSMISSION DISPATCH.</div>
+                <div class="log-step">Ready to send.</div>
               </div>
             </form>
           </div>
+
         </div>
       </div>
     </section>
+
   </main>
 
-  <!-- ========================================================================
-       FOOTER (LATVERIAN EMERALD BLOCKS & TITANIUM ACCENTS)
-       ======================================================================== -->
+  <!-- FOOTER -->
   <footer class="footer-sovereign">
     <div class="container">
       <div class="footer-top">
         <svg class="footer-sigil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
-          <line x1="12" y1="2" x2="12" y2="22"/>
-          <line x1="2" y1="8.5" x2="22" y2="8.5"/>
+          <circle cx="12" cy="12" r="9" />
+          <circle cx="12" cy="12" r="3.5" fill="currentColor" />
         </svg>
         <blockquote class="footer-quote">
-          "DOOM BOWS TO NO ADVERSITY. HE BENDS THE LAWS OF NATURE AND LOGIC TO HIS WILL."
+          "Stay curious. Keep building. Never stop learning."
         </blockquote>
         <div class="footer-sub">
-          ARCHITECT: NAITIK <span class="accent-slash">//</span> LATVERIA SOVEREIGN DOMAIN <span class="accent-slash">//</span> FORGED WITH TITANIUM & ARCANE LOGIC
+          Naitik Kumar Pradhan &nbsp;·&nbsp; Built with care
         </div>
       </div>
-
       <div class="footer-bottom">
-        <div class="footer-copy">
-          &copy; 2026 NAITIK. ALL RIGHTS RESERVED. SECURED UNDER LATVERIAN PROTOCOL.
-        </div>
-        <div class="footer-telemetry">
-          [ STATUS: SOVEREIGN OPERATIONAL // 44.1 THz ]
-        </div>
+        <div>&copy; 2026 Naitik Kumar Pradhan. All rights reserved.</div>
+        <div class="footer-telemetry" id="footer-time">IST 00:00:00</div>
       </div>
     </div>
   </footer>
 
-  <!-- ========================================================================
-       BLUEPRINT MODAL (SPECIFICATIONS INSPECTOR)
-       ======================================================================== -->
-  <div class="blueprint-modal" id="blueprint-modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-backdrop" id="modal-backdrop"></div>
-    <div class="modal-window">
-      <button class="modal-close-btn" id="modal-close" aria-label="Close Inspector">[ ESC / CLOSE &times; ]</button>
-      <div id="modal-body">
-        <!-- Populated dynamically by scripts/app.js -->
+  <!-- ====================================================================
+       EXPAND MODAL (project detail)
+       ==================================================================== -->
+  <div class="expand-modal-overlay" id="expand-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="expand-modal-box" id="expand-modal-box">
+      <button class="expand-close" id="expand-close" aria-label="Close">&times;</button>
+      <div id="expand-modal-body">
+        <!-- Populated by JS -->
       </div>
     </div>
   </div>
@@ -782,5 +658,5 @@
   <script src="scripts/cursor.js"></script>
   <script src="scripts/app.js"></script>
 </body>
-</html>
 
+</html>

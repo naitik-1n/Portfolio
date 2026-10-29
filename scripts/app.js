@@ -1,513 +1,403 @@
 /**
- * Latverian Core Application Controller
- * Handles Preloader, SFX Synthesizer, Uplink Form, Blueprint Modal, and HUD Telemetry.
+ * Naitik Portfolio — Application Controller
+ * Handles: Preloader, Light/Dark Mode, Expand Card Modal,
+ *          Contact Form, Navigation, Live Clock.
  */
 
-class LatverianAudio {
-  constructor() {
-    this.ctx = null;
-    this.enabled = false;
+// ==========================================================================
+// LIGHT / DARK MODE
+// ==========================================================================
+(function () {
+  const saved = localStorage.getItem('nkp-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  function updateIcon() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    btn.textContent = isDark ? '☀️' : '🌙';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
   }
 
-  init() {
-    if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      this.ctx = new AudioCtx();
-    }
-  }
+  updateIcon();
 
-  toggle() {
-    this.enabled = !this.enabled;
-    if (this.enabled) {
-      this.init();
-      if (this.ctx && this.ctx.state === 'suspended') {
-        this.ctx.resume();
-      }
-      this.playBeep(880, 0.05, 'sine');
-    }
-    return this.enabled;
-  }
-
-  playBeep(freq = 440, duration = 0.08, type = 'sine', volume = 0.06) {
-    if (!this.enabled || !this.ctx) return;
-    try {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-      gain.gain.setValueAtTime(volume, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + duration);
-    } catch (e) {
-      // Audio fallback
-    }
-  }
-
-  playGlitch() {
-    if (!this.enabled || !this.ctx) return;
-    try {
-      const duration = 0.06;
-      const bufferSize = this.ctx.sampleRate * duration;
-      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1;
-      }
-      const noise = this.ctx.createBufferSource();
-      noise.buffer = buffer;
-      const filter = this.ctx.createBiquadFilter();
-      filter.type = 'bandpass';
-      filter.frequency.value = 1800;
-      const gain = this.ctx.createGain();
-      gain.gain.setValueAtTime(0.02, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
-      noise.connect(filter);
-      filter.connect(gain);
-      gain.connect(this.ctx.destination);
-      noise.start();
-    } catch (e) { }
-  }
+  btn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('nkp-theme', next);
+    updateIcon();
+  });
 }
 
-// Project Details Data for Blueprint Modal
-const PROJECT_BLUEPRINTS = {
-  'vortex-f1': {
-    title: 'VORTEX-F1 // AERO-TELEMETRY PIPELINE',
-    tag: 'AERODYNAMICS & SIMULATION',
-    specs: [
-      { label: 'THROUGHPUT', value: '120,000 pts/sec' },
-      { label: 'LATENCY', value: '< 2.4ms per frame' },
-      { label: 'COMPUTE', value: 'CUDA & WebGPU Shaders' },
-      { label: 'ARCHITECTURE', value: 'Zero-Copy Ring Buffer' }
-    ],
-    summary: 'A sub-millisecond telemetry ingestion and aerodynamic visualization suite designed for high-downforce single-seaters. Simulates real-time computational fluid dynamics (CFD) streamlines over front-wing cascades and diffuser venturi tunnels.',
-    technologies: ['C++20', 'WebGPU', 'GLSL', 'Python Telemetry Engine', 'FastAPI', 'High-Speed WebSockets'],
-    architecture: `
-[PIT-WALL TELEMETRY SENSORS]
-             │ (CAN-Bus / UDP stream)
-             ▼
-[ZERO-COPY RING BUFFER INGESTION]
-             │
-   ┌─────────┴──────────┐
-   ▼                    ▼
-[CFD RUNTIME]   [DOWNFORCE VECTOR SOLVER]
-   │                    │
-   └─────────┬──────────┘
-             ▼
-[WEBGPU VOLUMETRIC STREAMLINE SHADER]
-    `
-  },
-  'latveria-os': {
-    title: 'LATVERIA-OS // DETERMINISTIC MICROKERNEL RUNTIME',
-    tag: 'SYSTEMS & LOW-LEVEL',
-    specs: [
-      { label: 'SCHEDULING', value: 'Hard Real-Time EDF' },
-      { label: 'MEMORY OVERHEAD', value: '64KB Base Footprint' },
-      { label: 'CONTEXT SWITCH', value: '42 nanoseconds' },
-      { label: 'FORMAL PROOF', value: 'TLA+ Model Checked' }
-    ],
-    summary: 'A ruthless, low-overhead microkernel architecture designed with Latverian architectural discipline. Implements capability-based security, lock-free IPC channels, and deterministic interrupt handling without dynamic allocation.',
-    technologies: ['Rust', 'x86_64 Assembly', 'Bare-Metal C', 'QEMU', 'GDB Telemetry', 'TLA+'],
-    architecture: `
-[USER PRIVILEGED CAPABILITIES]
-             │ (Lock-free IPC Doorbell)
-             ▼
-[LATVERIAN MICROKERNEL CORE]
- ├── Deterministic EDF Scheduler
- ├── Zero-Alloc Paging Table
- └── Isolated Hardware MMIO Driver Ring
-    `
-  },
-  'arcanum-neural': {
-    title: 'ARCANUM-NEURAL // SYMBOLIC-NUMERIC ENGINE',
-    tag: 'ARCANE WEB & AI',
-    specs: [
-      { label: 'FORMAL LOGIC', value: 'First-Order Proofs' },
-      { label: 'TENSOR ENGINE', value: 'Sparse Graph BLAS' },
-      { label: 'CONVERGENCE', value: 'Exact Symbolic Invariants' },
-      { label: 'ENERGY EFFICIENCY', value: '+42% vs standard Transformers' }
-    ],
-    summary: 'Merging ancient mathematical treatises with high-dimensional neural architectures. Enforces hard physical and mathematical laws as immutable boundary constraints during neural gradient descent, preventing catastrophic hallucinations.',
-    technologies: ['PyTorch', 'Rust Bindings', 'Z3 Theorem Prover', 'Symbolic Mathematics', 'ONNX Runtime'],
-    architecture: `
-[RAW SCIENTIFIC DATASET]
-             │
-             ▼
-[NEURAL FEATURE EXTRACTOR] ◄───► [ARCANUM SYMBOLIC PROVER]
-             │                    (Z3 SMT Invariant Verification)
-             ▼
-[CONVERGED THEOREM & HIGH-SPEED PREDICTOR]
-    `
-  },
-  'titanium-trace': {
-    title: 'TITANIUM-TRACE // HIGH-FREQUENCY LEDGER',
-    tag: 'SYSTEMS & LOW-LEVEL',
-    specs: [
-      { label: 'CONSENSUS', value: 'Raft / Latverian Quorum' },
-      { label: 'DISK DISPATCH', value: 'io_uring Zero-Copy' },
-      { label: 'TPS', value: '450,000 trans/sec' },
-      { label: 'JITTER (P99.9)', value: '< 18 microseconds' }
-    ],
-    summary: 'A high-frequency memory-mapped state machine replication engine. Eliminates heap allocations and garbage collection stops, leveraging Linux io_uring and kernel bypass networking for instant transactional durability.',
-    technologies: ['Go 1.23', 'Linux io_uring', 'eBPF Probes', 'FlatBuffers', 'Prometheus'],
-    architecture: `
-[INCOMING NETWORK TRANSACTIONS]
-             │ (Kernel Bypass eBPF / XDP)
-             ▼
-[CIRCULAR MMAP TRANSACTION LOG]
-             │ (io_uring Async Storage Sync)
-             ▼
-[TITANIUM CONSENSUS REPLICATION BUS]
-    `
-  },
-  'apex-sim': {
-    title: 'APEX-SIM // F1 LAP STRATEGY & DEGRADATION NEURAL MODEL',
-    tag: 'AERODYNAMICS & SIMULATION',
-    specs: [
-      { label: 'MONTE CARLO RUNS', value: '500,000 / race sec' },
-      { label: 'ACCURACY', value: '99.4% pit-window prediction' },
-      { label: 'WEATHER MODEL', value: 'Track micro-climate radar' },
-      { label: 'INPUT FACTORS', value: '38 tire & wing variables' }
-    ],
-    summary: 'Formula 1 strategic command engine that models tire rubber crystallization, brake thermal dissipation, and aero wake dirty air impact across multi-car battle intervals. Calculates optimal pit undercut windows under safety car deltas.',
-    technologies: ['Python', 'NumPy / Numba', 'Next.js', 'Tailwind', 'Canvas 2D Telemetry', 'Docker'],
-    architecture: `
-[LIVE TRACK SECTOR TIMING DATA]
-             │
-             ▼
-[MONTE CARLO COMBINATORIAL ENGINE]
- ├── Track Temperature Decay Solver
- ├── Dirty Air Aero Wake Penalty Matrix
- └── Safety Car Stochastic Trigger
-             │
-             ▼
-[OPTIMAL STRATEGY COMMAND RECOMMENDATION]
-    `
-  },
-  'chronos-sigil': {
-    title: 'CHRONOS-SIGIL // ARCANE COMPUTE RUNTIME',
-    tag: 'ARCANE WEB & AI',
-    specs: [
-      { label: 'RENDERING', value: 'Procedural GLSL Shaders' },
-      { label: 'FRAME TIMING', value: 'Locked 120 FPS' },
-      { label: 'AUDIO SYNTH', value: 'Web Audio Modular Synthesizer' },
-      { label: 'FILE SIZE', value: '18 KB Zero-Dependency' }
-    ],
-    summary: 'An experimental web experience combining procedural geometry, runic cryptographic puzzles, and generative soundscapes. Built with pure mathematics and raw WebGL shaders without external dependencies.',
-    technologies: ['WebGL 2.0', 'Raw GLSL', 'Web Audio API', 'TypeScript', 'Vite'],
-    architecture: `
-[USER RUNIC INTERACTION]
-             │
-             ▼
-[RAYMARCHING FRAGMENT SHADER]
- ├── Quaternion Arcane Fractals
- └── Dynamic Volumetric Green Fog
-             │
-             ▼
-[SYNCHRONIZED WEB AUDIO SYNTHESIZER]
-    `
-  }
-};
+// ==========================================================================
+// PRELOADER
+// ==========================================================================
+function initPreloader() {
+  const preloader     = document.getElementById('preloader');
+  const progressEl    = document.getElementById('preloader-progress');
+  const statusEl      = document.getElementById('preloader-status');
 
-document.addEventListener('DOMContentLoaded', () => {
-  const audio = new LatverianAudio();
-
-  // 1. Preloader Logic
-  const preloader = document.getElementById('preloader');
-  const preloaderProgress = document.getElementById('preloader-progress');
-  const preloaderStatus = document.getElementById('preloader-status');
-
-  const statusMessages = [
-    'SYNCHRONIZING OBSIDIAN CORES...',
-    'CALIBRATING TITANIUM ALLOY...',
-    'INVOKING RUNIC FREQUENCIES...',
-    'OPTIMIZING AERODYNAMIC FLOW...',
-    'LATVERIAN INTERFACE READY.'
+  const steps = [
+    'Setting up the workspace...',
+    'Loading design tokens...',
+    'Preparing your experience...',
+    'Almost ready...',
+    'Welcome.'
   ];
 
   let progress = 0;
-  const progressInterval = setInterval(() => {
-    progress += Math.floor(Math.random() * 18) + 6;
+
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 22) + 8;
     if (progress > 100) progress = 100;
 
-    if (preloaderProgress) {
-      preloaderProgress.textContent = `${String(progress).padStart(2, '0')}%`;
-    }
+    if (progressEl) progressEl.textContent = progress + '%';
 
-    const msgIndex = Math.min(Math.floor((progress / 100) * statusMessages.length), statusMessages.length - 1);
-    if (preloaderStatus) {
-      preloaderStatus.textContent = `[ ${statusMessages[msgIndex]} ]`;
-    }
+    const idx = Math.min(
+      Math.floor((progress / 100) * steps.length),
+      steps.length - 1
+    );
+    if (statusEl) statusEl.textContent = steps[idx];
 
     if (progress === 100) {
-      clearInterval(progressInterval);
+      clearInterval(interval);
       setTimeout(() => {
         if (preloader) {
           preloader.classList.add('fade-out');
           setTimeout(() => {
             preloader.style.display = 'none';
-          }, 600);
+          }, 650);
         }
-      }, 350);
+      }, 300);
     }
-  }, 75);
+  }, 80);
+}
 
-  // 2. Audio SFX Toggle
-  const audioToggle = document.getElementById('audio-toggle');
-  if (audioToggle) {
-    audioToggle.addEventListener('click', () => {
-      const isEnabled = audio.toggle();
-      audioToggle.textContent = isEnabled ? '[SFX: ACTIVE]' : '[SFX: MUTED]';
-      audioToggle.classList.toggle('active', isEnabled);
-    });
+// ==========================================================================
+// LIVE CLOCK (IST)
+// ==========================================================================
+function initClock() {
+  const clockEls = [
+    document.getElementById('telemetry-clock'),
+    document.getElementById('footer-time')
+  ];
+
+  function tick() {
+    const now  = new Date();
+    const opts = { timeZone: 'Asia/Kolkata', hour12: false,
+                   hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const time = now.toLocaleTimeString('en-IN', opts);
+    clockEls.forEach(el => { if (el) el.textContent = 'IST ' + time; });
   }
 
-  // Audio interaction triggers
-  document.querySelectorAll('a, button, .project-card, .tab-btn').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      audio.playBeep(1200, 0.03, 'sine', 0.02);
-      if (el.classList.contains('project-card')) {
-        audio.playGlitch();
-      }
-    });
+  tick();
+  setInterval(tick, 1000);
+}
 
-    el.addEventListener('click', () => {
-      audio.playBeep(700, 0.06, 'triangle', 0.05);
-    });
-  });
-
-  // 3. Live Latveria Standard Time Telemetry
-  const telemetryTime = document.getElementById('telemetry-clock');
-  function updateTelemetryClock() {
-    if (!telemetryTime) return;
-    const now = new Date();
-    const utcHours = String(now.getUTCHours()).padStart(2, '0');
-    const utcMins = String(now.getUTCMinutes()).padStart(2, '0');
-    const utcSecs = String(now.getUTCSeconds()).padStart(2, '0');
-    const ms = String(Math.floor(now.getUTCMilliseconds() / 10)).padStart(2, '0');
-    telemetryTime.textContent = `LATVERIA // ${utcHours}:${utcMins}:${utcSecs}.${ms} UTC`;
+// ==========================================================================
+// PROJECT EXPAND DATA
+// ==========================================================================
+const EXPAND_DATA = {
+  'proj-1': {
+    tag:      'Web & Apps',
+    title:    'Personal Portfolio',
+    summary:  'This portfolio was built entirely from scratch — no frameworks, no templates. Every design decision, colour, animation, and layout was crafted by hand. It features a custom emerald-green theme, a light and dark mode, interactive background art, a custom cursor, and a preloading screen.',
+    highlights: [
+      { label: 'Built with',   value: 'Vanilla HTML, CSS & JS' },
+      { label: 'Design style', value: 'Emerald Minimal Luxury'  },
+      { label: 'Features',     value: 'Dark/Light mode, Animations' },
+      { label: 'Status',       value: 'Live & Ongoing'           }
+    ],
+    tech: ['HTML5', 'CSS Custom Properties', 'Vanilla JavaScript', 'Canvas API', 'Web Audio API']
+  },
+  'proj-2': {
+    tag:      'Systems',
+    title:    'F1 Lap Analyser',
+    summary:  'A Python tool that processes raw Formula 1 timing data to compare sector times, tyre degradation, and race pace between drivers. It produces clean, readable charts that help you understand what actually happened on track during a race weekend.',
+    highlights: [
+      { label: 'Language',  value: 'Python 3'                  },
+      { label: 'Data',      value: 'F1 Timing & Telemetry CSV' },
+      { label: 'Output',    value: 'Charts & Sector Reports'   },
+      { label: 'Purpose',   value: 'Personal & Learning'       }
+    ],
+    tech: ['Python', 'Pandas', 'Matplotlib', 'NumPy', 'CSV Parsing']
+  },
+  'proj-3': {
+    tag:      'Web & Apps',
+    title:    'Study Tracker App',
+    summary:  'A lightweight web app that helps you track your daily study sessions. You can log hours for each subject, set daily goals, and view a weekly summary. Everything is saved in the browser — no account needed. Built to solve a personal problem with a clean, distraction-free interface.',
+    highlights: [
+      { label: 'Framework', value: 'React (No Backend)' },
+      { label: 'Storage',   value: 'localStorage'       },
+      { label: 'Focus',     value: 'UX & Simplicity'    },
+      { label: 'Status',    value: 'Completed'           }
+    ],
+    tech: ['React', 'CSS Modules', 'LocalStorage API', 'Chart.js']
+  },
+  'proj-4': {
+    tag:      'Research',
+    title:    'Science History Blog',
+    summary:  'A personal blog where I write about scientists and their discoveries — not just the results, but the story behind them. How did Newton actually arrive at the laws of motion? What drove Turing to create what he created? These are the stories I find worth telling.',
+    highlights: [
+      { label: 'Format',   value: 'Long-form Articles'  },
+      { label: 'Topics',   value: 'Physics, Maths, CS'  },
+      { label: 'Audience', value: 'Curious Readers'     },
+      { label: 'Status',   value: 'Ongoing'             }
+    ],
+    tech: ['Writing', 'Research', 'History of Science', 'Markdown', 'Static Site']
+  },
+  'proj-5': {
+    tag:      'Systems',
+    title:    'CLI Task Manager',
+    summary:  'A command-line task manager that runs entirely in the terminal. You can add tasks with optional priority levels (high, medium, low), mark them complete, list pending tasks, and delete old ones. All data is stored in a simple JSON file so nothing is ever lost between sessions.',
+    highlights: [
+      { label: 'Language', value: 'Python 3'         },
+      { label: 'Storage',  value: 'JSON File'        },
+      { label: 'Interface', value: 'Terminal / CLI'  },
+      { label: 'Status',   value: 'Completed'        }
+    ],
+    tech: ['Python', 'argparse', 'JSON', 'File I/O', 'CLI Design']
+  },
+  'proj-6': {
+    tag:      'Web & Apps',
+    title:    'Weather Dashboard',
+    summary:  'A clean, minimal weather dashboard that fetches real-time weather data from a public API. You can search by city and instantly see temperature, humidity, wind speed, and a short forecast — all displayed in a calm, readable layout with smooth transitions.',
+    highlights: [
+      { label: 'API',      value: 'OpenWeatherMap'   },
+      { label: 'Language', value: 'JavaScript (ES6+)' },
+      { label: 'Layout',   value: 'CSS Grid & Flex'  },
+      { label: 'Status',   value: 'Completed'         }
+    ],
+    tech: ['JavaScript', 'Fetch API', 'CSS Grid', 'OpenWeatherMap API', 'HTML5']
   }
-  setInterval(updateTelemetryClock, 40);
+};
 
-  // 4. Project Category Filtering
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
+// ==========================================================================
+// EXPAND CARD MODAL
+// ==========================================================================
+function initExpandCards() {
+  const overlay  = document.getElementById('expand-modal');
+  const body     = document.getElementById('expand-modal-body');
+  const closeBtn = document.getElementById('expand-close');
 
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  if (!overlay || !body || !closeBtn) return;
 
-      const filterValue = btn.getAttribute('data-filter');
+  function openModal(projectId) {
+    const data = EXPAND_DATA[projectId];
+    if (!data) return;
 
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filterValue === 'all' || category === filterValue) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 20);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(15px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 250);
-        }
-      });
-    });
-  });
+    body.innerHTML = `
+      <div class="expand-tag">${esc(data.tag)}</div>
+      <h2 class="expand-title">${esc(data.title)}</h2>
+      <div class="expand-divider"></div>
+      <p class="expand-summary">${esc(data.summary)}</p>
 
-  // 5. Blueprint Modal
-  const modal = document.getElementById('blueprint-modal');
-  const modalBackdrop = document.getElementById('modal-backdrop');
-  const modalClose = document.getElementById('modal-close');
-  const modalBody = document.getElementById('modal-body');
-
-  function openBlueprintModal(projectId) {
-    const data = PROJECT_BLUEPRINTS[projectId];
-    if (!data || !modal || !modalBody) return;
-
-    modalBody.innerHTML = `
-      <div class="blueprint-header">
-        <div class="blueprint-tag">[ ${data.tag} ]</div>
-        <h2 class="blueprint-title">${data.title}</h2>
-      </div>
-
-      <div class="blueprint-summary">
-        <p>${data.summary}</p>
-      </div>
-
-      <div class="blueprint-specs-grid">
-        ${data.specs.map(spec => `
-          <div class="blueprint-spec-item">
-            <span class="spec-label">${spec.label}</span>
-            <span class="spec-val">[${spec.value}]</span>
+      <div class="expand-highlights">
+        ${data.highlights.map(h => `
+          <div class="expand-highlight-item">
+            <div class="expand-highlight-label">${esc(h.label)}</div>
+            <div class="expand-highlight-val">${esc(h.value)}</div>
           </div>
         `).join('')}
       </div>
 
-      <div class="blueprint-section-title">
-        <span class="accent-slash">//</span> SYSTEM ARCHITECTURE FLOW
-      </div>
-      <pre class="blueprint-ascii">${data.architecture}</pre>
-
-      <div class="blueprint-section-title">
-        <span class="accent-slash">//</span> CORE TECHNOLOGIES & RUNTIME
-      </div>
-      <div class="blueprint-tech-tags">
-        ${data.technologies.map(t => `<span class="blueprint-pill">[ ${t} ]</span>`).join('')}
+      <div class="expand-divider"></div>
+      <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.6rem;letter-spacing:1px;text-transform:uppercase;">Technologies</div>
+      <div class="expand-tech-row">
+        ${data.tech.map(t => `<span class="expand-tech-pill">${esc(t)}</span>`).join('')}
       </div>
     `;
 
-    modal.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Trap focus
+    setTimeout(() => closeBtn.focus(), 50);
   }
 
-  function closeBlueprintModal() {
-    if (!modal) return;
-    modal.classList.remove('open');
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.open-blueprint-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const card = btn.closest('.project-card');
-      if (card) {
-        const id = card.getAttribute('data-project-id');
-        openBlueprintModal(id);
+  // Attach to all cards
+  document.querySelectorAll('.project-card[data-expand-id]').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.getAttribute('data-expand-id');
+      openModal(id);
+    });
+    // Keyboard accessibility
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const id = card.getAttribute('data-expand-id');
+        openModal(id);
       }
     });
   });
 
-  if (modalClose) modalClose.addEventListener('click', closeBlueprintModal);
-  if (modalBackdrop) modalBackdrop.addEventListener('click', closeBlueprintModal);
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
-      closeBlueprintModal();
+  closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      closeModal();
     }
   });
+}
 
-  // 6. Diplomatic Uplink Form
-  const uplinkForm = document.getElementById('uplink-form');
-  const uplinkStatusLog = document.getElementById('uplink-status-log');
-  const uplinkBtn = document.getElementById('uplink-submit-btn');
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
 
-  if (uplinkForm) {
-    uplinkForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+// ==========================================================================
+// PROJECT FILTER
+// ==========================================================================
+function initFilter() {
+  const filterBtns  = document.querySelectorAll('.filter-btn');
+  const cards       = document.querySelectorAll('.project-card');
 
-      const name = document.getElementById('uplink-name')?.value.trim();
-      const email = document.getElementById('uplink-email')?.value.trim();
-      const clearance = document.getElementById('uplink-clearance')?.value;
-      const message = document.getElementById('uplink-message')?.value.trim();
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-      if (!name || !email || !message) {
-        if (uplinkStatusLog) {
-          uplinkStatusLog.innerHTML = `<span class="log-err">[ERROR // PARAMETERS INCOMPLETE. ALL CHANNELS REQUIRED.]</span>`;
+      const val = btn.getAttribute('data-filter');
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const show = val === 'all' || cat === val;
+        card.style.opacity    = show ? '1' : '0';
+        card.style.transform  = show ? 'translateY(0)' : 'translateY(12px)';
+        card.style.pointerEvents = show ? '' : 'none';
+        setTimeout(() => {
+          card.style.display = show ? 'flex' : 'none';
+        }, show ? 0 : 240);
+        if (show) {
+          card.style.display = 'flex';
+          setTimeout(() => {
+            card.style.opacity   = '1';
+            card.style.transform = 'translateY(0)';
+          }, 20);
         }
-        return;
-      }
+      });
+    });
+  });
+}
 
-      if (uplinkBtn) {
-        uplinkBtn.disabled = true;
-        uplinkBtn.innerHTML = `<span>[ TRANSMITTING VIA RELAY... ]</span>`;
-      }
+// ==========================================================================
+// CONTACT FORM
+// ==========================================================================
+function initContactForm() {
+  const form       = document.getElementById('uplink-form');
+  const statusLog  = document.getElementById('uplink-status-log');
+  const submitBtn  = document.getElementById('uplink-submit-btn');
 
-      if (uplinkStatusLog) {
-        uplinkStatusLog.innerHTML = `
-          <div class="log-step">> ENCRYPTING PAYLOAD WITH 4096-BIT LATVERIAN CIPHER...</div>
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name     = document.getElementById('uplink-name')?.value.trim();
+    const email    = document.getElementById('uplink-email')?.value.trim();
+    const subject  = document.getElementById('uplink-clearance')?.value;
+    const message  = document.getElementById('uplink-message')?.value.trim();
+
+    if (!name || !email || !message) {
+      if (statusLog) statusLog.innerHTML = '<span class="log-err">Please fill in all required fields.</span>';
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled     = true;
+      submitBtn.textContent  = 'Sending...';
+    }
+
+    if (statusLog) {
+      statusLog.innerHTML = '<div class="log-step">Preparing your message...</div>';
+    }
+
+    setTimeout(() => {
+      if (statusLog) {
+        statusLog.innerHTML += '<div class="log-step">Sending via secure channel...</div>';
+      }
+    }, 600);
+
+    setTimeout(() => {
+      if (statusLog) {
+        statusLog.innerHTML = `
+          <div class="log-success">Message sent successfully. Thank you, ${esc(name)}!</div>
+          <div class="log-info">A reply will be sent to ${esc(email)} shortly.</div>
         `;
       }
+      if (submitBtn) {
+        submitBtn.disabled    = false;
+        submitBtn.textContent = 'Send Message';
+      }
+      form.reset();
+    }, 1500);
+  });
+}
 
-      setTimeout(() => {
-        if (uplinkStatusLog) {
-          uplinkStatusLog.innerHTML += `
-            <div class="log-step">> ROUTING THROUGH SECURE SATELLITE NODE [LAT-ORBIT-44]...</div>
-          `;
-        }
-      }, 700);
-
-      setTimeout(() => {
-        if (uplinkStatusLog) {
-          uplinkStatusLog.innerHTML += `
-            <div class="log-step log-success">> TRANSMISSION VERIFIED. DISPATCH RECORDED IN THE ARCHIVES.</div>
-            <div class="log-info">> [ORIGIN: ${escapeHtml(name)}] // [CLEARANCE: ${escapeHtml(clearance)}]</div>
-            <div class="log-info">> AWAIT LATVERIAN DIPLOMATIC RESPONSE AT: ${escapeHtml(email)}</div>
-          `;
-        }
-
-        if (uplinkBtn) {
-          uplinkBtn.disabled = false;
-          uplinkBtn.innerHTML = `<span>[ TRANSMISSION DISPATCHED // STAND BY ]</span>`;
-          audio.playBeep(980, 0.15, 'triangle', 0.08);
-        }
-
-        uplinkForm.reset();
-      }, 1500);
-    });
-  }
-
-  function escapeHtml(string) {
-    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
-      return {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;',
-        '/': '&#x2F;',
-        '`': '&#x60;',
-        '=': '&#x3D;'
-      }[s];
-    });
-  }
-
-  // 7. Smooth Scroll Navigation
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
+// ==========================================================================
+// SMOOTH SCROLL & ACTIVE NAV
+// ==========================================================================
+function initNav() {
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (target) {
         e.preventDefault();
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
 
-  // 8. Active Nav Link on Scroll
+  // Active nav highlight on scroll
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollY = window.pageYOffset;
-
-    sections.forEach(section => {
-      const sectionHeight = section.offsetHeight;
-      const sectionTop = section.offsetTop - 120;
-      const sectionId = section.getAttribute('id');
-
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        current = sectionId;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
       }
     });
+  }, { rootMargin: '-40% 0px -50% 0px' });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  });
+  sections.forEach(s => observer.observe(s));
+}
+
+// ==========================================================================
+// BOOT
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
+  initPreloader();
+  initClock();
+  initExpandCards();
+  initFilter();
+  initContactForm();
+  initNav();
 });
-
